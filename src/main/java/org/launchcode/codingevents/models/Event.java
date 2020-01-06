@@ -1,9 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 public class Event {
@@ -23,13 +20,16 @@ public class Event {
     private String location;
 //    @Size(min=1,max=5,message = "Atleast one person ")
     private int noOfPeople;
-    public Event(String name,String description,String location,String contactEmail,int noOfPeople) {
+    @AssertTrue(message = "Must require to register")
+    private boolean mustRegister;
+    public Event(String name,String description,String location,String contactEmail,int noOfPeople,boolean mustRegister) {
         this();
         this.name = name;
         this.description = description;
         this.location = location;
         this.contactEmail = contactEmail;
         this.noOfPeople = noOfPeople;
+        this.mustRegister = mustRegister;
 //        this.id = nextId;
 //        nextId++;
     }
@@ -71,6 +71,14 @@ public class Event {
 
     public int getNoOfPeople() {
         return noOfPeople;
+    }
+
+    public boolean isMustRegister() {
+        return mustRegister;
+    }
+
+    public void setMustRegister(boolean mustRegister) {
+        this.mustRegister = mustRegister;
     }
 
     public void setNoOfPeople(int noOfPeople) {

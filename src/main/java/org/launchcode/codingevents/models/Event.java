@@ -1,17 +1,14 @@
 package org.launchcode.codingevents.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 @Entity
 public class Event extends AbstractEntity {
-
 
     @NotBlank(message = "Name is required")
     @Size(min = 3,max = 50,message = "Name must be between 3 and 50 characters")
@@ -30,14 +27,18 @@ public class Event extends AbstractEntity {
 
     //    @Size(min=1,max=5,message = "Atleast one person ")
     private int noOfPeople;
-    private EventType type;
-    public Event(String name,String description,String location,String contactEmail,int noOfPeople ,EventType type) {
+
+    @ManyToOne
+    @NotNull(message = "Category is required")
+    private EventCategory eventCategory;
+
+    public Event(String name,String description,String location,String contactEmail,int noOfPeople ,EventCategory eventCategory) {
         this.name = name;
         this.description = description;
         this.location = location;
         this.contactEmail = contactEmail;
         this.noOfPeople = noOfPeople;
-        this.type = type;
+        this.eventCategory = eventCategory;
     }
     public Event(){
 
@@ -82,12 +83,12 @@ public class Event extends AbstractEntity {
         this.noOfPeople = noOfPeople;
     }
 
-    public EventType getType() {
-        return type;
+    public EventCategory getEventCategory() {
+        return eventCategory;
     }
 
-    public void setType(EventType type) {
-        this.type = type;
+    public void setEventCategory(EventCategory eventCategory) {
+        this.eventCategory = eventCategory;
     }
 
     @Override

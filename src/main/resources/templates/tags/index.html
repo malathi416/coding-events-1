@@ -4,15 +4,15 @@
 <body class="container">
 
 <header th:replace="fragments :: header"></header>
-
 <table class="table table-stripped" >
     <thead>
     <tr>
-        <th>Event Name</th>
+        <th>Tag Name</th>
     </tr>
     </thead>
-    <tr th:each="event:${events}">
-        <td><a th:href="'/events/detail?eventId=' + ${event.id}" th:text="${event.name}"></a></td>
+    <tr th:each="tag:${tags}">
+<!--        <td><a th:text="${tag.name}"></a></td>-->
+        <td><a th:href="'/tags/detail?tagId=' + ${tag.id}" th:text="${tag.name}"></a></td>
     </tr>
 </table>
 </body>

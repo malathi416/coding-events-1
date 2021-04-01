@@ -17,8 +17,7 @@ public class EventDetails extends AbstractEntity {
 //    @OneToOne(mappedBy = "eventDetails")
 //    private Event event;
 
-    public EventDetails(@Size(max = 500, message = "Description is too long") String description, @NotBlank(message = "Email is required")
-    @Email(message = "Invalid Email.Try again") String contactEmail) {
+    public EventDetails( String description,String contactEmail) {
         this.description = description;
         this.contactEmail = contactEmail;
     }

@@ -13,6 +13,7 @@
     </thead>
     <tr th:each="event:${events}">
         <td><a th:href="'/events/detail?eventId=' + ${event.id}" th:text="${event.name}"></a></td>
+        <td><a th:href="'/tags/detail?tagId=' + ${tag.id}" th:text="${tag.name}"></a></td>
     </tr>
 </table>
 </body>

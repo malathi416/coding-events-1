@@ -2,9 +2,7 @@ package org.launchcode.codingevents.models;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +22,9 @@ public class Event extends AbstractEntity {
     @Size(max = 50)
     private String location;
 
-    //    @Size(min=1,max=5,message = "Atleast one person ")
-    private int noOfPeople;
+    @Min(1)
+    @Max(50)
+    private Integer noOfPeople;
 
     @ManyToOne
     @NotNull(message = "Category is required")
@@ -34,7 +33,7 @@ public class Event extends AbstractEntity {
     @ManyToMany
     private final List<Tag> tags = new ArrayList<>();
 
-    public Event(String name,String location,int noOfPeople ,EventCategory eventCategory) {
+    public Event(String name,String location,Integer noOfPeople ,EventCategory eventCategory) {
         this.name = name;
         this.location = location;
         this.noOfPeople = noOfPeople;
@@ -68,11 +67,11 @@ public class Event extends AbstractEntity {
         this.location = location;
     }
 
-    public int getNoOfPeople() {
+    public Integer getNoOfPeople() {
         return noOfPeople;
     }
 
-    public void setNoOfPeople(int noOfPeople) {
+    public void setNoOfPeople(Integer noOfPeople) {
         this.noOfPeople = noOfPeople;
     }
 

@@ -129,5 +129,34 @@ public class EventController {
        }
        return "redirect:events/agg-tag";
     }
+    @GetMapping("edit/{id}")
+    public String displayEditForm(Model model, @PathVariable(value="id") Integer id) {
+        Optional<Event> result = eventRepository.findById(id);
+        Event event = result.get();
+        model.addAttribute("title","Update  Event  where  ID = "+id +" name is "+ event.getName()) ;
+        model.addAttribute("event",event);
+        model.addAttribute("categories", eventCategoryRepository.findAll());
+        return "events/edit";
+    }
 
+
+    @PostMapping("edit")
+    public String processEditForm(@RequestParam(required = false) Integer id,@ModelAttribute Event event) {
+        Optional<Event> result = eventRepository.findById(id);
+        Event updateevent = result.get();
+        updateevent.setName(event.getName());
+        updateevent.setEventDetails(event.getEventDetails());
+        eventRepository.save(updateevent);
+        return "redirect:";
+    }
+//    @PostMapping("edit")
+//    public String processEditForm(@ModelAttribute("event") Event event) {
+////        Optional<Event> result = eventRepository.findById(id);
+////        event = result.get();
+////        updateevent.setName(event.getName());
+////        updateevent.setEventDetails(event.getEventDetails());
+////        event.setName(event.getName());
+//        eventRepository.save(event);
+//        return "redirect:";
+//    }
 }

@@ -14,7 +14,7 @@
         <th>Location</th>
         <th>No Of People</th>
         <th>Category</th>
-        <th>Edit Event</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tr th:each="event:${events}">
@@ -26,6 +26,9 @@
         <td th:text="${event.eventCategory}"></td>
         <td>
             <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit Event</a>
+        </td>
+        <td>
+            <a th:href="@{/events/delete/{id}(id=${event.id})}">Delete Event</a>
         </td>
 
 <!--        <td><a th:href="'/tags/detail?tagId=' + ${tag.id}" th:text="${tag.name}"></a></td>-->

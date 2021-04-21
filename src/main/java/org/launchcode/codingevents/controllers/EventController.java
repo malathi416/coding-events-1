@@ -83,7 +83,7 @@ public class EventController {
                 eventRepository.deleteById(id);
             }
         }
-        return "redirect:";
+        return "redirect:/";
     }
 
     @GetMapping("detail")
@@ -144,6 +144,12 @@ public class EventController {
     public String processEditForm(@RequestParam(required = false) Integer id,@ModelAttribute Event event) {
         eventRepository.save(event);
         return "redirect:";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteEventById( @PathVariable(value="id") Integer id) {
+        eventRepository.deleteById(id);
+        return "redirect:/";
+
     }
 
 }

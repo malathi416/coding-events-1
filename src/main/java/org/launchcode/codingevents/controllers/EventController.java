@@ -142,21 +142,8 @@ public class EventController {
 
     @PostMapping("edit")
     public String processEditForm(@RequestParam(required = false) Integer id,@ModelAttribute Event event) {
-        Optional<Event> result = eventRepository.findById(id);
-        Event updateevent = result.get();
-        updateevent.setName(event.getName());
-        updateevent.setEventDetails(event.getEventDetails());
-        eventRepository.save(updateevent);
+        eventRepository.save(event);
         return "redirect:";
     }
-//    @PostMapping("edit")
-//    public String processEditForm(@ModelAttribute("event") Event event) {
-////        Optional<Event> result = eventRepository.findById(id);
-////        event = result.get();
-////        updateevent.setName(event.getName());
-////        updateevent.setEventDetails(event.getEventDetails());
-////        event.setName(event.getName());
-//        eventRepository.save(event);
-//        return "redirect:";
-//    }
+
 }
